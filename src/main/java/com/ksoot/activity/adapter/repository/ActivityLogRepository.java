@@ -26,6 +26,10 @@ public class ActivityLogRepository {
 
   private final MongoOperations mongoOperations;
 
+  public ActivityLog save(final ActivityLog activityLog) {
+    return this.mongoOperations.save(activityLog);
+  }
+
   public Page<ActivityLog> getActivityLogs(
       final String author,
       final ActivityLog.Activity activity,
@@ -71,9 +75,9 @@ public class ActivityLogRepository {
           totalRecords <= pageRequest.getPageSize()
               ? PageRequest.of(0, pageRequest.getPageSize(), pageRequest.getSort())
               : pageRequest;
-      final List<ActivityLog> feeMovementRecords =
+      final List<ActivityLog> activityLogs =
           this.mongoOperations.find(query.with(pageable), ActivityLog.class);
-      return new PageImpl<>(feeMovementRecords, pageable, totalRecords);
+      return new PageImpl<>(activityLogs, pageable, totalRecords);
     }
   }
 }

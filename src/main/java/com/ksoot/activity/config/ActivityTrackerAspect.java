@@ -17,11 +17,11 @@ public class ActivityTrackerAspect {
   private AuthorProvider authorProvider;
 
   @Around("@annotation(TrackActivity)")
-  public Object logUserActivity(ProceedingJoinPoint joinPoint, TrackActivity trackActivity)
+  public Object logActivity(ProceedingJoinPoint joinPoint, TrackActivity trackActivity)
       throws Throwable {
-    ActivityLog.Activity activity = trackActivity.action();
-    String description = trackActivity.description();
-    String author = this.authorProvider.getAuthor();
+    final ActivityLog.Activity activity = trackActivity.action();
+    final String description = trackActivity.description();
+    final String author = this.authorProvider.getAuthor();
 
     //        Map<String, String> metadata =
     // Arrays.stream(trackActivity.metadata()).map(String::trim)
@@ -34,12 +34,12 @@ public class ActivityTrackerAspect {
     Object[] args = joinPoint.getArgs();
     // Optionally add method args to metadata
 
-    ActivityLog audit = ActivityLog.start(activity, author, description);
-    activityLogRepository.save(audit);
+    ActivityLog activityLog = ActivityLog.start(activity, author, description);
+    activityLogRepository.save(activityLog);
 
     Object result = joinPoint.proceed();
 
-    activityLogRepository.save(audit);
+    activityLogRepository.save(activityLog);
 
     return result;
   }

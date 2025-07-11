@@ -1,4 +1,4 @@
-package com.ksoot.activity.model.util.pagination;
+package com.ksoot.activity.model.util;
 
 import static org.springframework.web.util.UriComponentsBuilder.fromUri;
 

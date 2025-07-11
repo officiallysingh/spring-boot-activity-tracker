@@ -2,17 +2,14 @@ package com.ksoot.activity.adapter.controller;
 
 import static com.ksoot.activity.model.util.ActivityLogConstants.DEFAULT_PAGE_SIZE;
 import static com.ksoot.activity.model.util.ActivityLogMapper.ACTIVITY_LOGS_PAGE_TRANSFORMER;
-import static com.ksoot.activity.model.util.rest.ApiConstants.INTERNAL_SERVER_ERROR_EXAMPLE_RESPONSE;
 
 import com.ksoot.activity.adapter.repository.ActivityLogRepository;
 import com.ksoot.activity.model.ActivityLog;
 import com.ksoot.activity.model.ActivityLogVM;
-import com.ksoot.activity.model.util.pagination.PaginatedResource;
-import com.ksoot.activity.model.util.pagination.PaginatedResourceAssembler;
+import com.ksoot.activity.model.util.PaginatedResource;
+import com.ksoot.activity.model.util.PaginatedResourceAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,10 +41,7 @@ public class ActivityLogController {
             responseCode = "200",
             description =
                 "Activity Logs page returned successfully. Returns an empty page if no records found"),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal Server error",
-            content = @Content(examples = @ExampleObject(INTERNAL_SERVER_ERROR_EXAMPLE_RESPONSE)))
+        @ApiResponse(responseCode = "500", description = "Internal Server error")
       })
   public PaginatedResource<ActivityLogVM> getActivityLogs(
       @Parameter(description = "Name of the user who performed the activity. E.g. <b>SYSTEM</b>")

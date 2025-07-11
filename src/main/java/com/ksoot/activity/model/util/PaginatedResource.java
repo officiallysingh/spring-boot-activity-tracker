@@ -1,4 +1,4 @@
-package com.ksoot.activity.model.util.pagination;
+package com.ksoot.activity.model.util;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collection;
