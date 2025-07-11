@@ -1,6 +1,5 @@
-package com.ksoot.activity.config;
+package com.ksoot.activity.model;
 
-import com.ksoot.activity.model.ActivityLog;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TrackActivity {
 
-  ActivityLog.Activity action();
+  String activity();
 
   String description() default "";
 

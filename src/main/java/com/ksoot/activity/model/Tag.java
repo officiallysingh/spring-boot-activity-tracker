@@ -1,4 +1,4 @@
-package com.ksoot.activity.config;
+package com.ksoot.activity.model;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,1 +1,2 @@
+com.ksoot.activity.config.MongoDBConfig
 com.ksoot.activity.config.ActivityTrackerAutoConfiguration

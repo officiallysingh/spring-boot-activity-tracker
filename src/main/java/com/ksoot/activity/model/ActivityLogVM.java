@@ -17,7 +17,7 @@ public class ActivityLogVM {
 
   private String author;
 
-  private ActivityLog.Activity activity;
+  private String activity;
 
   private String description;
 

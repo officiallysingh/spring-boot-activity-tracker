@@ -32,7 +32,7 @@ public class ActivityLogRepository {
 
   public Page<ActivityLog> getActivityLogs(
       final String author,
-      final ActivityLog.Activity activity,
+      final String activity,
       final ActivityLog.Status status,
       final OffsetDateTime fromDateTime,
       final OffsetDateTime tillDateTime,

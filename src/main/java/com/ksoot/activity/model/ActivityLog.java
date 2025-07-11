@@ -31,7 +31,7 @@ public class ActivityLog {
 
   @NotEmpty @Indexed private String author;
 
-  @NotNull @Indexed private Activity activity;
+  @NotNull @Indexed private String activity;
 
   @TextIndexed(weight = 1)
   private String description;
@@ -49,12 +49,12 @@ public class ActivityLog {
   private Map<String, String> metadata;
 
   public static ActivityLog start(
-      final Activity activity, final String author, final String description) {
+      final String activity, final String author, final String description) {
     return start(activity, author, description, null);
   }
 
   public static ActivityLog start(
-      final Activity activity, final String author, final String description, List<String> tags) {
+      final String activity, final String author, final String description, List<String> tags) {
     ActivityLog activityLog = new ActivityLog();
 
     activityLog.activity = activity;
@@ -85,12 +85,6 @@ public class ActivityLog {
     this.status = Status.FAILED;
     this.errorMessage = errorMessage;
     this.metadata = metadata;
-  }
-
-  public enum Activity {
-    GET_All,
-    JOB_START,
-    FILE_UPLOAD
   }
 
   public enum Status {

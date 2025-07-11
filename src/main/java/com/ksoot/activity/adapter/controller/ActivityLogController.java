@@ -48,7 +48,7 @@ public class ActivityLogController {
           @RequestParam(required = false)
           final String author,
       @Parameter(description = "Activity Name.") @RequestParam(required = false)
-          final ActivityLog.Activity activity,
+          final String activity,
       @Parameter(description = "Activity Status.") @RequestParam(required = false)
           final ActivityLog.Status status,
       @Parameter(description = "From Datetime, Inclusive. E.g. <b>2023-12-20T13:57:13+05:30</b>")
