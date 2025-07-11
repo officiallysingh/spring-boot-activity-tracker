@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "activity.tracker.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": "true",
+      "description": "Whether to enable the activity tracker."
+    }
+  ]
+}
