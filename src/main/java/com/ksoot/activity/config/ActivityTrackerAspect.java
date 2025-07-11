@@ -31,15 +31,15 @@ public class ActivityTrackerAspect {
     //                    map.put(parts[0], parts[1]);
     //                    return map;
     //                });
-    Object[] args = joinPoint.getArgs();
+    final Object[] args = joinPoint.getArgs();
     // Optionally add method args to metadata
 
-    ActivityLog activityLog = ActivityLog.start(activity, author, description);
-    activityLogRepository.save(activityLog);
+    final ActivityLog activityLog = ActivityLog.start(activity, author, description);
+    this.activityLogRepository.save(activityLog);
 
-    Object result = joinPoint.proceed();
+    final Object result = joinPoint.proceed();
 
-    activityLogRepository.save(activityLog);
+    this.activityLogRepository.save(activityLog);
 
     return result;
   }
