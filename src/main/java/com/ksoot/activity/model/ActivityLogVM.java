@@ -1,6 +1,8 @@
 package com.ksoot.activity.model;
 
+import jakarta.validation.constraints.NotEmpty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,8 @@ public class ActivityLogVM {
   private OffsetDateTime timestamp;
 
   private ActivityLog.Status status;
+
+  private List<@NotEmpty String> tags;
 
   private String errorMessage;
 

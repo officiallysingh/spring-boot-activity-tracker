@@ -26,8 +26,9 @@ public class ActivityTrackerAutoConfiguration {
   }
 
   @Bean
-  ActivityTrackerAspect activityTrackerAspect() {
-    return new ActivityTrackerAspect();
+  ActivityTrackerAspect activityTrackerAspect(
+      final ActivityLogRepository activityLogRepository, final AuthorProvider authorProvider) {
+    return new ActivityTrackerAspect(activityLogRepository, authorProvider);
   }
 
   @Bean

@@ -14,6 +14,4 @@ public @interface TrackActivity {
   String description() default "";
 
   Tag[] tags() default {};
-
-  boolean skip() default false;
 }

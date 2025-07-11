@@ -2,8 +2,10 @@ package com.ksoot.activity.model;
 
 import static com.ksoot.activity.model.util.ActivityLogConstants.ACTIVITY_LOGS_COLLECTION_NAME;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -25,28 +27,28 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @TypeAlias("activity_log")
 public class ActivityLog {
 
-  @Id protected String id;
+  @Id private String id;
 
-  @Version protected Long version;
+  @Version private Long version;
 
   @NotEmpty @Indexed private String author;
 
-  @NotNull @Indexed private String activity;
+  @NotEmpty @Indexed private String activity;
 
   @TextIndexed(weight = 1)
   private String description;
 
-  @NotEmpty private OffsetDateTime timestamp;
+  @NotNull @PastOrPresent private OffsetDateTime timestamp;
 
   @NotNull @Indexed private Status status;
 
   @TextIndexed(weight = 2)
-  private List<String> tags;
+  private List<@NotEmpty String> tags;
 
   @TextIndexed(weight = 3)
   private String errorMessage;
 
-  private Map<String, String> metadata;
+  @Valid private Map<@NotEmpty String, String> metadata;
 
   public static ActivityLog start(
       final String activity, final String author, final String description) {
@@ -55,6 +57,15 @@ public class ActivityLog {
 
   public static ActivityLog start(
       final String activity, final String author, final String description, List<String> tags) {
+    return start(activity, author, description, tags, null);
+  }
+
+  public static ActivityLog start(
+      final String activity,
+      final String author,
+      final String description,
+      List<String> tags,
+      final Map<String, String> metadata) {
     ActivityLog activityLog = new ActivityLog();
 
     activityLog.activity = activity;
@@ -63,6 +74,7 @@ public class ActivityLog {
     activityLog.timestamp = OffsetDateTime.now();
     activityLog.status = Status.STARTED;
     activityLog.tags = tags;
+    activityLog.metadata = metadata;
 
     return activityLog;
   }
